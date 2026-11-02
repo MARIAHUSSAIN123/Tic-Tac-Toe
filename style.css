@@ -1,0 +1,125 @@
+:root {
+    --board: #1f3a4d;
+    --cell: #2b4c63;
+    --cell-hover: #355c78;
+    --chalk: #f2f5f7;
+    --x-color: #ffd166;
+    --o-color: #6ee7c8;
+    --accent: #ef6f6c;
+    --cell-size: clamp(80px, 26vw, 110px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 16px;
+    background: var(--board);
+    color: var(--chalk);
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    letter-spacing: 0.02em;
+}
+
+h3 {
+    margin: 0;
+    min-height: 1.5em;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* The board */
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, var(--cell-size));
+    grid-template-rows: repeat(3, var(--cell-size));
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.game button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background: var(--cell);
+    color: var(--chalk);
+    font-size: calc(var(--cell-size) * 0.5);
+    font-weight: 700;
+    font-family: inherit;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.game button:hover:not(:disabled) {
+    background: var(--cell-hover);
+}
+
+.game button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.game button:disabled {
+    cursor: not-allowed;
+}
+
+/* Optional: add these classes from JS to colour the marks */
+.game button.x {
+    color: var(--x-color);
+}
+
+.game button.o {
+    color: var(--o-color);
+}
+
+/* Optional: add this class to highlight the winning cells */
+.game button.win {
+    background: var(--accent);
+    color: var(--board);
+}
+
+/* Reset button */
+#reset-btn {
+    margin-top: 8px;
+    padding: 12px 28px;
+    border: 2px solid var(--chalk);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--chalk);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#reset-btn:hover {
+    background: var(--chalk);
+    color: var(--board);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--x-color);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
